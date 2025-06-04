@@ -43,3 +43,20 @@ class District(models.Model):
 
     def __str__(self):
         return f"{self.name}, {self.id_city.name}"
+
+
+# Classes w FK (2)
+
+class DeliveryPoint(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=15)
+    reference = models.CharField(max_length=50, null=True, blank=True)
+    image_url = models.CharField(max_length=255)
+    latitude = models.CharField(max_length=30)
+    longitude = models.CharField(max_length=30)
+    address = models.CharField(max_length=50)
+    id_city = models.ForeignKey(City, on_delete=models.CASCADE)
+    id_district = models.ForeignKey(District, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
