@@ -310,4 +310,13 @@ poetry.toml
 # LSP config files
 pyrightconfig.json
 
+# Ignorar __pycache__ en cualquier carpeta migrations/
+**/migrations/__pycache__/
+
+# Ignorar archivos .pyc en cualquier ubicación
+*.pyc
+
+# Base de datos SQLite (global)
+*.sqlite3
+
 # End of https://www.toptal.com/developers/gitignore/api/python,node
