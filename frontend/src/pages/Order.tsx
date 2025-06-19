@@ -1,26 +1,27 @@
 import { useState } from "react";
 import ImageDisplay from "../components/order/ImageDisplay";
 import StepIndicator from "../components/order/StepIndicator";
-import MenuOptions from "../components/order/MenuOptions";
+import MenuOptionsCheckbox from "../components/order/MenuOptionsCheckbox";
 import NavigationButton from "../components/order/NavigationButton";
 import pollo from "../assets/pollo.png";
 
 function Order() {
     const [step, setStep] = useState(1);
     const [order, setOrder] = useState({
-        menu: "",
-        entrada: "",
-        bebida: "",
-        postre: "",
+        menu: {} as Record<string, number>,
+        entrada: {} as Record<string, number>,
+        bebida: {} as Record<string, number>,
+        postre: {} as Record<string, number>,
         lugar: "",
     });
 
-    const handleSelection = (key: string, value: string) => {
-        setOrder(prev => ({
-            ...prev,
-            [key]: value,
-        }));
-    };
+    const getTotalMenuItems = () =>
+        Object.values(order.menu).reduce((acc, qty) => acc + qty, 0);
+
+    const formatResumen = (obj: Record<string, number>) =>
+        Object.entries(obj)
+            .map(([name, qty]) => `${qty} ${name}`)
+            .join(", ");
 
     const nextStep = () => {
         if (step < 6) setStep(prev => prev + 1);
@@ -33,57 +34,72 @@ function Order() {
                 <StepIndicator currentStep={step} totalSteps={6} />
 
                 {step === 1 && (
-                    <MenuOptions
+                    <MenuOptionsCheckbox
                         title="Elegir Menú"
                         options={["Pollo a la brasa", "Tallarin verde con milanesa"]}
                         selected={order.menu}
-                        onSelect={value => handleSelection("menu", value)}
+                        onChange={(value) => setOrder(prev => ({ ...prev, menu: value }))}
                     />
                 )}
 
                 {step === 2 && (
-                    <MenuOptions
+                    <MenuOptionsCheckbox
                         title="Elegir Entrada"
                         options={["Tequeños", "Papa a la huancaína"]}
                         selected={order.entrada}
-                        onSelect={value => handleSelection("entrada", value)}
+                        onChange={(value) => setOrder(prev => ({ ...prev, entrada: value }))}
+                        maxTotal={getTotalMenuItems()}
                     />
                 )}
 
                 {step === 3 && (
-                    <MenuOptions
+                    <MenuOptionsCheckbox
                         title="Elegir Bebida"
                         options={["Maracuyá", "Chicha", "Agua"]}
                         selected={order.bebida}
-                        onSelect={value => handleSelection("bebida", value)}
+                        onChange={(value) => setOrder(prev => ({ ...prev, bebida: value }))}
+                        maxTotal={getTotalMenuItems()}
                     />
                 )}
 
                 {step === 4 && (
-                    <MenuOptions
+                    <MenuOptionsCheckbox
                         title="Elegir Postre"
                         options={["Torta de chocolate", "Gelatina", "Mazamorra morada"]}
                         selected={order.postre}
-                        onSelect={value => handleSelection("postre", value)}
+                        onChange={(value) => setOrder(prev => ({ ...prev, postre: value }))}
+                        maxTotal={getTotalMenuItems()}
                     />
                 )}
 
                 {step === 5 && (
-                    <MenuOptions
-                        title="Elegir Lugar de recojo"
-                        options={["Puerta 2", "Puerta 7", "Local"]}
-                        selected={order.lugar}
-                        onSelect={value => handleSelection("lugar", value)}
-                    />
+                    <div className="border border-gray-300 rounded-md p-4">
+                        <h2 className="font-semibold text-base mb-3">Elegir Lugar de Recojo</h2>
+                        <div className="space-y-2">
+                            {["Puerta 1", "Puerta 7", "Puerta principal"].map((lugar, index) => (
+                                <label key={index} className="flex items-center text-sm">
+                                    <input
+                                        type="radio"
+                                        name="lugar"
+                                        value={lugar}
+                                        checked={order.lugar === lugar}
+                                        onChange={() => setOrder(prev => ({ ...prev, lugar }))}
+                                        className="mr-2 w-4 h-4"
+                                    />
+                                    {lugar}
+                                </label>
+                            ))}
+                        </div>
+                    </div>
                 )}
 
                 {step === 6 && (
                     <div className="border border-gray-300 rounded-md p-4 text-sm">
                         <h2 className="font-semibold mb-2">Confirmación de pedido</h2>
-                        <p><strong>Menú:</strong> 1 {order.menu}</p>
-                        <p><strong>Entrada:</strong> 1 {order.entrada}</p>
-                        <p><strong>Bebida:</strong> 1 {order.bebida}</p>
-                        <p><strong>Postre:</strong> {order.postre}</p>
+                        <p><strong>Menú:</strong> {formatResumen(order.menu)}</p>
+                        <p><strong>Entrada:</strong> {formatResumen(order.entrada)}</p>
+                        <p><strong>Bebida:</strong> {formatResumen(order.bebida)}</p>
+                        <p><strong>Postre:</strong> {formatResumen(order.postre)}</p>
                         <p><strong>Lugar de recojo:</strong> {order.lugar}</p>
                         <p><strong>Precio:</strong> S/. 11.00</p>
                     </div>
