@@ -97,7 +97,7 @@ function Home() {
             </div>
           </div>
         <div className='md:col-span-2'>
-        <ButtonPrimary href='/pedido' >
+        <ButtonPrimary href='/ordenar-menu' >
           Realizar pedido
         </ButtonPrimary>
         </div>
