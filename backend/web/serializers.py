@@ -6,6 +6,11 @@ class CitySerializer(serializers.ModelSerializer):
         model = City
         fields = '__all__'
 
+class FoodCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FoodCategory
+        fields = '__all__'
+
 class InstitutionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Institution
@@ -26,8 +31,27 @@ class DistrictSerializer(serializers.ModelSerializer):
         model = District
         fields = '__all__'
 
+class FoodSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Food
+        fields = '__all__'
+
 class DeliveryPointSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeliveryPoint
         fields = '__all__'
 
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = '__all__'
+
+class AdditionalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Additional
+        fields = '__all__'
