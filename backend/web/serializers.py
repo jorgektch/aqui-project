@@ -1,20 +1,39 @@
 from rest_framework import serializers
 from .models import *
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
         fields = '__all__'
-
 
 class InstitutionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Institution
         fields = '__all__'
 
+class MenuItemTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MenuItemType
+        fields = '__all__'
+
+class RoleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Role
+        fields = '__all__'
+
 class TypeDocumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeDocument
+        fields = '__all__'
+
+class CollaboratorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Collaborator
         fields = '__all__'
 
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -27,10 +46,24 @@ class DistrictSerializer(serializers.ModelSerializer):
         model = District
         fields = '__all__'
 
+class MenuItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MenuItem
+        fields = '__all__'
+
+class CustomerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Customer
+        fields = '__all__'
 
 class DeliveryPointSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeliveryPoint
+        fields = '__all__'
+
+class MenuAvailabilitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MenuAvailability
         fields = '__all__'
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -38,3 +71,12 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = '__all__'
 
+class BagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bag
+        fields = '__all__'
+
+class BagItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BagItem
+        fields = '__all__'
