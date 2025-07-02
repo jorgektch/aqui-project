@@ -21,5 +21,9 @@ router.register(r'bags', BagView, basename='bag')
 router.register(r'bag-items', BagItemView, basename='bagitem')
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    # Registro y autenticación JWT:
+    path('auth/register/', RegisterView.as_view(), name='register'),
+    path('auth/login/', LoginView.as_view(), name='login'),          # devuelve access+refresh
+    path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
