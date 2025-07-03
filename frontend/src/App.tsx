@@ -8,10 +8,26 @@ import Order from './pages/Order.tsx'
 import Login from './pages/Login.tsx'
 import Signup from './pages/Signup.tsx'
 import ProtectedRoute from './pages/ProtectedRoute.tsx'
+import Perfil from './pages/Perfil.tsx'
+
 import { AuthProvider } from './auth/AuthContext.tsx'
 function App() {
 
   return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="/" element={<ProtectedRoute />}>
+          <Route element={<Layout />}>
+            <Route index element={<Navigate to='/home' />} />
+            <Route path='home' element={<Home />} />
+            <Route path="carta" element={<Carta />} />
+            <Route path="nosotros" element={<About />} />
+            <Route path='ordenar-menu' element={<Order />} />
+            <Route path='perfil' element={<Perfil />} />
+            {/* Add more protected routes here as needed */}
+            {/* Example: <Route path="settings" element={<Settings />} /> */}
     <AuthProvider>
 
       <BrowserRouter>
