@@ -15,8 +15,13 @@ function Order() {
         lugar: "",
     });
 
-    const getTotalMenuItems = () =>
-        Object.values(order.menu).reduce((acc, qty) => acc + qty, 0);
+    const calcularPrecioTotal = () => {
+        const totalMenu = Object.values(order.menu).reduce((acc, qty) => acc + qty * 8, 0);
+        const totalEntrada = Object.values(order.entrada).reduce((acc, qty) => acc + qty * 1.5, 0);
+        const totalBebida = Object.values(order.bebida).reduce((acc, qty) => acc + qty * 1.5, 0);
+        const totalPostre = Object.values(order.postre).reduce((acc, qty) => acc + qty * 1, 0);
+        return (totalMenu + totalEntrada + totalBebida + totalPostre).toFixed(2);
+    };
 
     const formatResumen = (obj: Record<string, number>) =>
         Object.entries(obj)
@@ -48,7 +53,6 @@ function Order() {
                         options={["Tequeños", "Papa a la huancaína"]}
                         selected={order.entrada}
                         onChange={(value) => setOrder(prev => ({ ...prev, entrada: value }))}
-                        maxTotal={getTotalMenuItems()}
                     />
                 )}
 
@@ -58,7 +62,6 @@ function Order() {
                         options={["Maracuyá", "Chicha", "Agua"]}
                         selected={order.bebida}
                         onChange={(value) => setOrder(prev => ({ ...prev, bebida: value }))}
-                        maxTotal={getTotalMenuItems()}
                     />
                 )}
 
@@ -68,7 +71,6 @@ function Order() {
                         options={["Torta de chocolate", "Gelatina", "Mazamorra morada"]}
                         selected={order.postre}
                         onChange={(value) => setOrder(prev => ({ ...prev, postre: value }))}
-                        maxTotal={getTotalMenuItems()}
                     />
                 )}
 
@@ -101,7 +103,7 @@ function Order() {
                         <p><strong>Bebida:</strong> {formatResumen(order.bebida)}</p>
                         <p><strong>Postre:</strong> {formatResumen(order.postre)}</p>
                         <p><strong>Lugar de recojo:</strong> {order.lugar}</p>
-                        <p><strong>Precio:</strong> S/. 11.00</p>
+                        <p><strong>Precio:</strong> S/. {calcularPrecioTotal()}</p>
                     </div>
                 )}
             </div>
