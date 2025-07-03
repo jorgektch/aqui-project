@@ -8,6 +8,8 @@ import Order from './pages/Order.tsx'
 import Login from './pages/Login.tsx'
 import Signup from './pages/Signup.tsx'
 import ProtectedRoute from './pages/ProtectedRoute.tsx'
+import Perfil from './pages/Perfil.tsx'
+
 function App() {
 
   return (
@@ -22,6 +24,9 @@ function App() {
             <Route path="carta" element={<Carta />} />
             <Route path="nosotros" element={<About />} />
             <Route path='ordenar-menu' element={<Order />} />
+            <Route path='perfil' element={<Perfil />} />
+            {/* Add more protected routes here as needed */}
+            {/* Example: <Route path="settings" element={<Settings />} /> */}
 
             {/* Add more routes here as needed */}
             {/* Example: <Route path="about" element={<About />} /> */}
