@@ -1,6 +1,8 @@
-import { Bell, User } from "lucide-react"
+import { Bell, User, LogOut } from "lucide-react"
+import { useAuth } from "../../auth/AuthContext";
 
 function Header() {
+  const { logout }  = useAuth();
   return (
     <nav className="bg-white min-h-[60px] px-8 py-6 flex justify-between items-center w-full">
         <ul className="">
@@ -21,6 +23,9 @@ function Header() {
             <a href="/perfil" className=" text-black">
                 <User strokeWidth={1} />
             </a>
+            <button className="text-black cursor-pointer" onClick={logout}>
+                <LogOut strokeWidth={1} />
+            </button>
         </div>
     </nav>
   )

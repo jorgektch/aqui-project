@@ -8,27 +8,31 @@ import Order from './pages/Order.tsx'
 import Login from './pages/Login.tsx'
 import Signup from './pages/Signup.tsx'
 import ProtectedRoute from './pages/ProtectedRoute.tsx'
+import { AuthProvider } from './auth/AuthContext.tsx'
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="/" element={<ProtectedRoute />}>
-          <Route element={<Layout />}>
-            <Route index element={<Navigate to='/home' />} />
-            <Route path='home' element={<Home />} />
-            <Route path="carta" element={<Carta />} />
-            <Route path="nosotros" element={<About />} />
-            <Route path='ordenar-menu' element={<Order />} />
+    <AuthProvider>
 
-            {/* Add more routes here as needed */}
-            {/* Example: <Route path="about" element={<About />} /> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="/" element={<ProtectedRoute />}>
+            <Route element={<Layout />}>
+              <Route index element={<Navigate to='/home' />} />
+              <Route path='home' element={<Home />} />
+              <Route path="carta" element={<Carta />} />
+              <Route path="nosotros" element={<About />} />
+              <Route path='ordenar-menu' element={<Order />} />
+
+              {/* Add more routes here as needed */}
+              {/* Example: <Route path="about" element={<About />} /> */}
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 
