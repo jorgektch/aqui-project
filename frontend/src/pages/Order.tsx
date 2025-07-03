@@ -23,7 +23,7 @@ function Order() {
     const totalPostre = Object.values(order.postre).reduce((acc, qty) => acc + qty * 1, 0);
     return (totalMenu + totalEntrada + totalBebida + totalPostre).toFixed(2);
   };
-
+/*hola*/
   return (
   <div className="min-h-screen px-4 py-6 bg-white flex flex-col lg:flex-row items-center lg:items-center justify-center gap-6">
     {/* Imagen */}
