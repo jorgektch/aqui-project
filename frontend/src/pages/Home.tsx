@@ -24,6 +24,7 @@ const bebidas = [
   { id: 2, name: 'Maracuyá', price: 2.49, image: Ellipse21 }]
 
 function Home() {
+
   return (
     <>
       <div className="relative w-full min-h-[580px] pb-12 flex">
