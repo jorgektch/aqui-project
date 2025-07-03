@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface Props {
     title: string;
     options: string[];
@@ -20,7 +18,7 @@ function MenuOptionsCheckbox({ title, options, selected, onChange }: Props) {
 
     const handleQuantityChange = (option: string, value: number) => {
         const updated = { ...selected };
-        if (value < 1) {
+        if (value < 1 || isNaN(value)) {
             delete updated[option];
         } else {
             updated[option] = value;
@@ -33,7 +31,11 @@ function MenuOptionsCheckbox({ title, options, selected, onChange }: Props) {
             <h2 className="font-semibold text-base mb-3">{title}</h2>
             <div className="space-y-3">
                 {options.map((option, idx) => (
-                    <div key={idx} className="flex items-center justify-between">
+                    <div
+                        key={idx}
+                        className="flex items-center justify-between"
+                    >
+                        {/* Checkbox + texto */}
                         <label className="flex items-center text-sm">
                             <input
                                 type="checkbox"
@@ -44,15 +46,25 @@ function MenuOptionsCheckbox({ title, options, selected, onChange }: Props) {
                             {option}
                         </label>
 
-                        {selected[option] !== undefined && (
-                            <input
-                                type="number"
-                                min={1}
-                                value={selected[option]}
-                                onChange={(e) => handleQuantityChange(option, parseInt(e.target.value))}
-                                className="w-14 h-8 text-center border border-gray-300 rounded focus:outline-none"
-                            />
-                        )}
+                        {/* Input cantidad (siempre presente para mantener el layout) */}
+                        <input
+                            type="number"
+                            min={1}
+                            value={selected[option] || ""}
+                            onChange={(e) =>
+                                handleQuantityChange(
+                                    option,
+                                    parseInt(e.target.value) || 1
+                                )
+                            }
+                            className={`w-14 h-8 text-center border rounded focus:outline-none transition 
+                                ${
+                                    selected[option]
+                                        ? "border-gray-300 text-black"
+                                        : "border-transparent text-transparent"
+                                }`}
+                            disabled={!selected[option]}
+                        />
                     </div>
                 ))}
             </div>
