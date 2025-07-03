@@ -25,7 +25,8 @@ function App() {
               <Route path='home' element={<Home />} />
               <Route path="carta" element={<Carta />} />
               <Route path="nosotros" element={<About />} />
-              <Route path='ordenar-menu' element={<Order />} />
+              
+              <Route path='perfil' element={<Perfil />} />
 
               {/* Add more routes here as needed */}
               {/* Example: <Route path="about" element={<About />} /> */}
