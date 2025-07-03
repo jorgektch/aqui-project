@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { Phone, Calendar, Hash, History, X } from "lucide-react";
 
 function Perfil() {
