@@ -46,33 +46,18 @@ function Header() {
                 <p className="flex items-center font-semibold text-gray-700 mb-1">
                   <Drumstick className="mr-2 h-4 w-4" /> Menú:
                 </p>
-                <ul className="list-disc list-inside text-gray-800">
-                  {Object.entries(pedido.menu).map(([item, qty]) => (
-                    <li key={item}>{qty} × {item}</li>
-                  ))}
-                </ul>
               </div>
 
               <div>
                 <p className="flex items-center font-semibold text-gray-700 mb-1">
                   <Salad className="mr-2 h-4 w-4" /> Entrada:
                 </p>
-                <ul className="list-disc list-inside text-gray-800">
-                  {Object.entries(pedido.entrada).map(([item, qty]) => (
-                    <li key={item}>{qty} × {item}</li>
-                  ))}
-                </ul>
               </div>
 
               <div>
                 <p className="flex items-center font-semibold text-gray-700 mb-1">
                   <CupSoda className="mr-2 h-4 w-4" /> Bebida:
                 </p>
-                <ul className="list-disc list-inside text-gray-800">
-                  {Object.entries(pedido.bebida).map(([item, qty]) => (
-                    <li key={item}>{qty} × {item}</li>
-                  ))}
-                </ul>
               </div>
 
               <div>
@@ -80,9 +65,6 @@ function Header() {
                   <CakeSlice className="mr-2 h-4 w-4" /> Postre:
                 </p>
                 <ul className="list-disc list-inside text-gray-800">
-                  {Object.entries(pedido.postre).map(([item, qty]) => (
-                    <li key={item}>{qty} × {item}</li>
-                  ))}
                 </ul>
               </div>
 

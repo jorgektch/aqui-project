@@ -48,7 +48,6 @@ function Order() {
         <ImageDisplay
           src={pollo}
           alt="Pollo a la brasa"
-          className="rounded-lg object-cover w-full h-full"
         />
       </div>
 
