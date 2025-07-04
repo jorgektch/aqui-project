@@ -7,6 +7,7 @@ import About from './pages/About'
 //import Order from './pages/Order.tsx'
 import Login from './pages/Login.tsx'
 import Signup from './pages/Signup.tsx'
+import Order from './pages/Order.tsx'
 import ProtectedRoute from './pages/ProtectedRoute.tsx'
 import Perfil from './pages/Perfil.tsx'
 
@@ -25,7 +26,7 @@ function App() {
               <Route path='home' element={<Home />} />
               <Route path="carta" element={<Carta />} />
               <Route path="nosotros" element={<About />} />
-              
+              <Route path="ordenar-menu" element={<Order />} />
               <Route path='perfil' element={<Perfil />} />
 
               {/* Add more routes here as needed */}
